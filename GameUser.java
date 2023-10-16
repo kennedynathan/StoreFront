@@ -41,7 +41,7 @@ public static void main(String[] args) {
     	String prodpurch = scnr.next();
     	if (store.getInventoryManager().findProduct(prodpurch) != null) {
     		store.getShoppingCart().addItem(store.getInventoryManager().findProduct(prodpurch));
-    		System.out.println("Product purchased.");
+    		System.out.println("Product purchased. " + prodpurch);
     	}
     	else{
     		System.out.println("Product not found.");
@@ -57,8 +57,8 @@ public static void main(String[] args) {
     	System.out.println(h2.toString() + "\n");
     	String prodcanc = scnr.next();
     	if (store.getInventoryManager().findProduct(prodcanc) != null) {
-    		store.getShoppingCart().addItem(store.getInventoryManager().findProduct(prodcanc));
-    		System.out.println("Product cancelled.");
+    		store.getShoppingCart().removeItem(store.getInventoryManager().findProduct(prodcanc));
+    		System.out.println("Product cancelled. " + prodcanc);
     	}
     	else{
     		System.out.println("Product not found.");
