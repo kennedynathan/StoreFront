@@ -22,11 +22,31 @@ public class ShoppingCart<E extends SalableProduct> {
 		}
 	    //add item to cart
 	    public void addItem(E product) {
-	       items.add(product);
+	    	if(product == null)
+			{
+				return;
+			}
+			for (int i = 0; i < items.size(); i++){
+				if(product.getName().equals(this.items.get(i).getName())){
+					this.items.get(i).addQuantity(product.getQuantity());
+					return;
+				}
+			}
+	    	this.items.add(product);
 	    }
 	    //remove item from cart
-	    public void removeItem(E product) {
-	        items.remove(product);
+	    public E removeItem(String product) throws IllegalArgumentException {
+			for (int i = 0; i < items.size(); i++)
+			{
+				if(product.toLowerCase().equals(this.items.get(i).getName().toLowerCase())) {
+					E temp = this.items.get(i);
+					this.items.remove(i);
+					return temp;
+				}
+			}
+			System.out.println("Item does not exist. (CART)");
+			return null;
+	     
 	    }
 	    //shows carts total price
 	    public double getTotalPrice() {
@@ -42,6 +62,7 @@ public class ShoppingCart<E extends SalableProduct> {
 			this.items.clear();
 			return temp;
 		}
+	    
 	}
 
 

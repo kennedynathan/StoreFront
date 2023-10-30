@@ -1,5 +1,18 @@
 package app;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(
+		  use = JsonTypeInfo.Id.NAME, 
+		  include = JsonTypeInfo.As.PROPERTY, 
+		  property = "type")
+		@JsonSubTypes({ 
+		  @Type(value = Armor.class, name = "armor"), 
+		  @Type(value = Weapon.class, name = "weapon"),
+		  @Type(value = Health.class, name = "health")})
+
 public class SalableProduct {
 	private String name;
 	private String description;
