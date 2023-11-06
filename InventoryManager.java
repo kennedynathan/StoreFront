@@ -26,6 +26,22 @@ public class InventoryManager<E extends SalableProduct> {
 			FileService<SalableProduct> fileService = new FileService<SalableProduct>();
 			this.products = (ArrayList<E>) fileService.readInventoryJson("inventory.json");
 		}
+	    //sorts products in ascending order
+	    public void sortAscending()
+		{
+			this.products.sort(null); 
+		}
+	    //shows the inventory in ascending order
+	    public void showStock()
+		{
+			this.sortAscending();
+			System.out.println("----------STOCK----------");
+			for(int i = 0; i < this.products.size(); i++)
+			{
+				System.out.println(this.products.get(i).toString());
+				System.out.println("-----------------------------------------------------");
+			}
+		}
 	    //uses loop set to the size of the product list to return the list of products
 	    public SalableProduct[] getInventory()
 		{
