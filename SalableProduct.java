@@ -1,9 +1,12 @@
-package app;
+package adminApp;
+
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+// Jackson Type Info for all Super Classes of a Car
+//  Maps the type field to the Super Class types
 @JsonTypeInfo(
 		  use = JsonTypeInfo.Id.NAME, 
 		  include = JsonTypeInfo.As.PROPERTY, 
@@ -12,78 +15,108 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 		  @Type(value = Armor.class, name = "armor"), 
 		  @Type(value = Weapon.class, name = "weapon"),
 		  @Type(value = Health.class, name = "health")})
+public class SalableProduct implements Comparable<SalableProduct>
+{
 
-public class SalableProduct {
 	private String name;
 	private String description;
 	private double price;
+	private int quantity;
 	
-    public int quantity;
-    
-    public SalableProduct() {
-    	name = "empty";
-    	description = "empty";
-    	price = 0;
-    	quantity = 0;	
-    }
-    //Argument constructor
-    public SalableProduct(String name, String description, double price, int quantity) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.quantity = quantity;
-    }
-  //Creates copy of input salable product
-    public SalableProduct(SalableProduct other){
-    	this.name = other.name;
-    	this.description = other.description;
-    	this.price = other.price;
-    	this.quantity = other.quantity;
-    }
-    //returns name
-    public String getName() {
-        return name;
-    }
-    //returns description
-    public String getDescription() {
-        return description;
-    }
-    //returns price
-    public double getPrice() {
-        return price;
-    }
-    //returns quantity
-    public int getQuantity() {
-        return quantity;
-    }
-    //adds one to the quantity of a product
-    public void addQuantity(int quantity){
+	// Constructor for base initialization of the SalablePRoduct
+	public SalableProduct()
+	{
+		name = "";
+		description = "";
+		price = 0;
+		quantity = 0;
+	}
+	
+	// Constructor with parameters for all the class variables.
+	SalableProduct(String name, String description, double price, int quantity)
+	{
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.quantity = quantity;
+	}
+	
+	// Copy constructor taking in a salable product and creating one just like it.
+	public SalableProduct(SalableProduct another)
+	{
+		this.name = another.name;
+		this.description = another.description;
+		this.price = another.price;
+		this.quantity = another.quantity;
+	}
+	
+	// Return the name of SalableProduct.
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	// Return description of SalableProduct.
+	public String getDescription()
+	{
+		return this.description;
+	}
+	
+	 // Return price of SalableProduct.
+	public double getPrice()
+	{
+		return this.price;
+	}
+	
+	
+	// Return quantity of SalableProduct.
+	 
+	public int getQuantity()
+	{
+		return this.quantity;
+	}
+	
+	// Add a quantity to an item.
+	
+	public void addQuantity(int quantity)
+	{
 		this.quantity += quantity;
 	}
-    //removes one to quantity of the product
-	public void removeQuantity(int quantity){
+	
+	// Remove quantity from the SalableProduct.
+	public void removeQuantity(int quantity)
+	{
 		this.quantity -= quantity;
 	}
-	//sets quantity to specified number
+	
+	// Take in a number and replace the quantity with that number.
 	public void setQuantity(int num)
 	{
 		this.quantity = num;
 	}
-	//compares products alphabetically unless same name then by price.
-	public int compareTo(SalableProduct o){
+
+	@Override
+	// Take in a Salable and compare it with the current one by name, and if they are the same, then by price.
+	public int compareTo(SalableProduct o)
+	{
 		// if they are not the same return the difference, if they are then check the price
-		if (this.name.compareTo(o.getName()) != 0){
+		if (this.name.compareTo(o.getName()) != 0)
+		{
 			return this.name.compareTo(o.getName());
 		}
-		else if ((this.price - o.getPrice()) != 0){
-			if (this.price > o.getPrice()){
+		else if ((this.price - o.getPrice()) != 0)
+		{
+			if (this.price > o.getPrice())
+			{
 				return 1;
 			}
-			else{
+			else
+			{
 				return -1;
 			}
 		}
-		else{
+		else
+		{
 			return 0;
 		}
 		

@@ -1,42 +1,51 @@
-package app;
+package adminApp;
 
-public class Armor extends SalableProduct {
+public class Armor extends SalableProduct{
+
 	private int armorValue;
 	private String material;
-	//Constructor
+	
+	// Generic constructor.
 	public Armor()
 	{
 		super();
 		armorValue = 0;
 		material = "";
 	}
-	//Argument constructor
-	public Armor(String name, String description, double price, int quantity, int armorValue, String material) {
+	
+	// Constructor with class variables.
+	Armor(String name, String description, double price, int quantity, int armorValue, String material) {
 		super(name, description, price, quantity);
 		this.armorValue = armorValue;
 		this.material = material;
 	}
-	//creates copy of armor
-	public Armor(Armor other)
+	
+	// Copy constructor from another piece of armor.
+	
+	public Armor(Armor another)
 	{
-		super(other);
-		this.armorValue = other.armorValue;
-		this.material = other.material;
+		super(another);
+		this.armorValue = another.armorValue;
+		this.material = another.material;
 	}
-	//return armor value
+	
+	// Get the armorValue from armor.
 	public int getArmorValue()
 	{
 		return this.armorValue;
 	}
+	
+	// Get the material of the armor.
 	public String material()
 	{
 		return this.material;
 	}
-	//Override toStrig() to display 
+	
+	// Override the toString operator to ease display.
 	public String toString()
 	{
-		String output = "Name: " + this.getName() + "\nDescription: " + this.getDescription() + "\nPrice: " + this.getPrice() + "\nQuantity: " + this.getQuantity() + "\nArmorValue: " + this.armorValue + "\nMaterial: " + this.material;
-		return output;
+		String display = "Name: " + this.getName() + "\nDescription: " + this.getDescription() + "\nPrice: " + this.getPrice() + "\nQuantity: " + this.getQuantity() + "\nArmorValue: " + this.armorValue + "\nMaterial: " + this.material;
+		return display;
 	}
 
 }

@@ -1,4 +1,6 @@
-package app;
+package adminApp;
+
+import adminApp.SalableProduct;
 
 public class Health extends SalableProduct{
 	private int health;

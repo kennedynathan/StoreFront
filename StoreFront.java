@@ -8,9 +8,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class StoreFront {
 	 private InventoryManager<SalableProduct> inventoryManager;
 	 private ShoppingCart<SalableProduct> shoppingCart;
+	 private ServerThread server;
 
 	 public StoreFront() {
 	     
+	 }
+	 public void startServer() {
+		 System.out.println("Starting Server...");
+		 server = new ServerThread(this.inventoryManager);
+		 server.start();
 	 }
 	 //sets store with initial set of products 2 of each weapon, health, and armor
 	 public void initializeStore() {
@@ -25,7 +31,7 @@ public class StoreFront {
 				e.printStackTrace();
 			}
 			shoppingCart = new ShoppingCart<SalableProduct>();
-			
+			this.startServer();
 			// Display the name of shop and the welcome message
 			System.out.println("-----------Greatest Store------------");
 			System.out.println("Hello Welcome to the Greatest Store");
@@ -107,18 +113,18 @@ public class StoreFront {
 			}
 			
 			read.close();
-		 Weapon sweapon = new Weapon("sweapon","small weapon",5.00,3,2,"wood");
-		    getInventoryManager().addProduct(sweapon);
-		    Weapon bweapon = new Weapon("bweapon","big weapon",10.00,2,5,"metal");
-		    getInventoryManager().addProduct(bweapon);
-		    Armor sarmor = new Armor("sarmor","small armor",5.00,3,4,"cloth");
-		    getInventoryManager().addProduct(sarmor);
-		    Armor barmor = new Armor("barmor","big armor",10.00,2,8,"metal");
-		    getInventoryManager().addProduct(barmor);
-		    Health shealth = new Health("shealth","small health",5,3,5);
-		    getInventoryManager().addProduct(shealth);
-		    Health bhealth = new Health("bhealth","big health",10.00,2,10);
-		    getInventoryManager().addProduct(bhealth);
+		 //Weapon sweapon = new Weapon("sweapon","small weapon",5.00,3,2,"wood");
+		   // getInventoryManager().addProduct(sweapon);
+		   // Weapon bweapon = new Weapon("bweapon","big weapon",10.00,2,5,"metal");
+		   // getInventoryManager().addProduct(bweapon);
+		   // Armor sarmor = new Armor("sarmor","small armor",5.00,3,4,"cloth");
+		   // getInventoryManager().addProduct(sarmor);
+		   // Armor barmor = new Armor("barmor","big armor",10.00,2,8,"metal");
+		   // getInventoryManager().addProduct(barmor);
+		    //Health shealth = new Health("shealth","small health",5,3,5);
+		    //getInventoryManager().addProduct(shealth);
+		    //Health bhealth = new Health("bhealth","big health",10.00,2,10);
+		    //getInventoryManager().addProduct(bhealth);
 	    }
 	 //purchase product and add it to the shopping cart
 	 public void purchaseProducts() throws IOException {

@@ -134,4 +134,7 @@ public class InventoryManager<E extends SalableProduct> {
 				}
 			}
 		}
+		public void setInventory(ArrayList<E> inventory) {
+			this.products = inventory;
+		}
 	}
